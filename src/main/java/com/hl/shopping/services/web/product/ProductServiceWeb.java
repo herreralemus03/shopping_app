@@ -10,18 +10,16 @@ import java.util.UUID;
 
 public interface ProductServiceWeb {
 
-    public List<Product> listProducts();
+    public List<ProductDto> listProducts();
 
-    public Page<Product> pageProducts(int page, int size);
+    public Page<ProductDto> pageProducts(int page, int size);
 
-    public Product findProductById(UUID id);
+    public ProductDto findProductById(UUID id);
 
-    public Product findProductByName(String name);
+    public ProductDto addProduct(ProductDto product);
 
-    public Product addProduct(ProductDto product);
+    public ProductDto updateProduct(ProductDto product);
 
-    public Product updateProduct(ProductDto product);
-
-    public Product deleteProduct(UUID id);
+    public ProductDto deleteProduct(UUID id);
 
 }

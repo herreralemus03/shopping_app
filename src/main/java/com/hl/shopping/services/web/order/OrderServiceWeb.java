@@ -9,18 +9,16 @@ import java.util.UUID;
 
 public interface OrderServiceWeb {
 
-    public List<Product> listOrders();
+    public List<OrderDto> listOrders();
 
-    public Page<Product> pageOrders(int page, int size);
+    public Page<OrderDto> pageOrders(int page, int size);
 
-    public Product findOrderById(UUID id);
+    public OrderDto findOrderById(UUID id);
 
-    public Product findOrderByName(String name);
+    public OrderDto addOrder(OrderDto order);
 
-    public Product addOrder(OrderDto order);
+    public OrderDto updateOrder(OrderDto order);
 
-    public Product updateOrder(OrderDto order);
-
-    public Product deleteOrder(OrderDto order);
+    public OrderDto deleteOrder(OrderDto order);
 
 }

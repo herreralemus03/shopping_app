@@ -1,57 +1,69 @@
 package com.hl.shopping.services.web.client;
 
 import com.hl.shopping.dto.ClientDto;
-import com.hl.shopping.entites.Product;
+import com.hl.shopping.entites.Client;
 import com.hl.shopping.services.datasource.client.ClientService;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class ClientServiceWebImpl implements ClientServiceWeb {
 
     final ClientService clientService;
+    final ModelMapper modelMapper;
 
     public ClientServiceWebImpl (
-            ClientService clientService
+            ClientService clientService,
+            ModelMapper modelMapper
     ){
         this.clientService = clientService;
+        this.modelMapper = modelMapper;
     }
 
     @Override
-    public List<Product> listClients() {
-        return null;
+    public List<ClientDto> listClients() {
+        return clientService.findAllListed()
+                .stream()
+                .map(e -> modelMapper.map(e, ClientDto.class))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public Page<Product> pageClients(int page, int size) {
-        return null;
+    public Page<ClientDto> pageClients(int page, int size) {
+        return clientService.findAllPaged(PageRequest.of(page, size))
+                .map(e -> modelMapper.map(e, ClientDto.class));
     }
 
     @Override
-    public Product findClientById(UUID id) {
-        return null;
+    public ClientDto findClientById(UUID id) {
+        return modelMapper.map(clientService.findById(id), ClientDto.class);
     }
 
     @Override
-    public Product findClientByName(String name) {
-        return null;
+    public ClientDto addClient(ClientDto clientDto) {
+        Client client = modelMapper.map(clientDto, Client.class);
+        Client result = clientService.add(client);
+        return modelMapper.map(result, ClientDto.class);
     }
 
     @Override
-    public Product addClient(ClientDto client) {
-        return null;
+    public ClientDto updateClient(ClientDto clientDto) {
+        Client client = modelMapper.map(clientDto, Client.class);
+        Client result = clientService.add(client);
+        return modelMapper.map(result, ClientDto.class);
     }
 
     @Override
-    public Product updateClient(ClientDto client) {
-        return null;
-    }
-
-    @Override
-    public Product deleteClient(ClientDto client) {
-        return null;
+    public ClientDto deleteClient(UUID id) {
+        ClientDto clientFound = this.findClientById(id);
+        Client client = modelMapper.map(clientFound, Client.class);
+        Client result = clientService.delete(client);
+        return modelMapper.map(result, ClientDto.class);
     }
 }

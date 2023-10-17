@@ -1,7 +1,8 @@
 package com.hl.shopping.controllers;
 
+import com.hl.shopping.dto.ClientDto;
 import com.hl.shopping.dto.ProductDto;
-import com.hl.shopping.services.web.product.ProductServiceWeb;
+import com.hl.shopping.services.web.client.ClientServiceWeb;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,19 +10,19 @@ import java.util.HashMap;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(path = "/products")
-public class ProductsController {
+@RequestMapping(path = "/clients")
+public class ClientsController {
 
-    final ProductServiceWeb productServiceWeb;
+    final ClientServiceWeb clientServiceWeb;
 
-    public ProductsController(
-            ProductServiceWeb productServiceWeb
+    public ClientsController(
+            ClientServiceWeb clientServiceWeb
     ) {
-        this.productServiceWeb = productServiceWeb;
+        this.clientServiceWeb = clientServiceWeb;
     }
 
     @GetMapping("/get/paged")
-    public ResponseEntity<?> getProductsPaged(
+    public ResponseEntity<?> getClientsPaged(
             @RequestParam("page") final Integer page,
             @RequestParam("size") final Integer size
     ){
@@ -29,7 +30,7 @@ public class ProductsController {
             return ResponseEntity.ok(new HashMap<String, Object>(){{
                 put("code", 200);
                 put("status", "ok");
-                put("body", productServiceWeb.pageProducts(page, size));
+                put("body", clientServiceWeb.pageClients(page, size));
             }});
         } catch (Exception e){
             return ResponseEntity.status(500).body(e);
@@ -37,12 +38,12 @@ public class ProductsController {
     }
 
     @GetMapping("/get/listed")
-    public ResponseEntity<?> getProductsListed(){
+    public ResponseEntity<?> getClientsListed(){
         try {
             return ResponseEntity.ok(new HashMap<String, Object>(){{
                 put("code", 200);
                 put("status", "ok");
-                put("body", productServiceWeb.listProducts());
+                put("body", clientServiceWeb.listClients());
             }});
         } catch (Exception e){
             return ResponseEntity.status(500).body(e);
@@ -50,14 +51,14 @@ public class ProductsController {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<?> getProduct(
+    public ResponseEntity<?> getClient(
             @PathVariable("id") final String id
     ){
         try {
             return ResponseEntity.ok(new HashMap<String, Object>(){{
                 put("code", 200);
                 put("status", "ok");
-                put("body", productServiceWeb.findProductById(UUID.fromString(id)));
+                put("body", clientServiceWeb.findClientById(UUID.fromString(id)));
             }});
         } catch (Exception e){
             return ResponseEntity.status(500).body(e);
@@ -65,14 +66,14 @@ public class ProductsController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> addProduct(
-            @RequestBody ProductDto productDto
+    public ResponseEntity<?> addClient(
+            @RequestBody ClientDto clientDto
     ){
         try {
             return ResponseEntity.ok(new HashMap<String, Object>(){{
                 put("code", 200);
                 put("status", "ok");
-                put("body", productServiceWeb.addProduct(productDto));
+                put("body", clientServiceWeb.addClient(clientDto));
             }});
         } catch (Exception e){
             return ResponseEntity.status(500).body(e);
@@ -80,14 +81,14 @@ public class ProductsController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<?> updateProduct(
-            @RequestBody ProductDto productDto
+    public ResponseEntity<?> updateClient(
+            @RequestBody ClientDto clientDto
     ){
         try {
             return ResponseEntity.ok(new HashMap<String, Object>(){{
                 put("code", 200);
                 put("status", "ok");
-                put("body", productServiceWeb.updateProduct(productDto));
+                put("body", clientServiceWeb.updateClient(clientDto));
             }});
         } catch (Exception e){
             return ResponseEntity.status(500).body(e);
@@ -102,7 +103,7 @@ public class ProductsController {
             return ResponseEntity.ok(new HashMap<String, Object>(){{
                 put("code", 200);
                 put("status", "ok");
-                put("body", productServiceWeb.deleteProduct(UUID.fromString(id)));
+                put("body", clientServiceWeb.deleteClient(UUID.fromString(id)));
             }});
         } catch (Exception e){
             return ResponseEntity.status(500).body(e);
