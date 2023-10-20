@@ -22,8 +22,8 @@ public class ProductsController {
 
     @GetMapping("/get/paged")
     public ResponseEntity<?> getProductsPaged(
-            @RequestParam("page") final Integer page,
-            @RequestParam("size") final Integer size
+            @RequestParam(name = "page", required = false, defaultValue = "0") final Integer page,
+            @RequestParam(name = "size", required = false, defaultValue = "12") final Integer size
     ){
         try {
             return ResponseEntity.ok(new HashMap<String, Object>(){{
@@ -75,6 +75,7 @@ public class ProductsController {
                 put("body", productServiceWeb.addProduct(productDto));
             }});
         } catch (Exception e){
+            e.printStackTrace();
             return ResponseEntity.status(500).body(e);
         }
     }

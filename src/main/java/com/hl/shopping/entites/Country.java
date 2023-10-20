@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.UUID;
 
 @Entity
 @Table(name = "countries", schema = "shopping")
@@ -15,7 +16,7 @@ public class Country {
     @Id
     @Getter @Setter
     @Column(name = "id")
-    private Long id;
+    private UUID id;
 
     @Getter @Setter
     @Column(name = "country_name")

@@ -2,8 +2,10 @@ package com.hl.shopping.entites;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -26,4 +28,7 @@ public class Order {
     @JoinColumn(name = "id_store", referencedColumnName = "id")
     private Store store;
 
+    @Getter @Setter
+    @OneToMany(mappedBy = "order")
+    List<OrderShipping> orderShipping;
 }

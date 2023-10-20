@@ -55,7 +55,7 @@ public class ClientServiceWebImpl implements ClientServiceWeb {
     @Override
     public ClientDto updateClient(ClientDto clientDto) {
         Client client = modelMapper.map(clientDto, Client.class);
-        Client result = clientService.add(client);
+        Client result = clientService.update(client);
         return modelMapper.map(result, ClientDto.class);
     }
 

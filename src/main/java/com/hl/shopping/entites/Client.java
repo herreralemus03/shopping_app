@@ -3,10 +3,7 @@ package com.hl.shopping.entites;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -14,6 +11,7 @@ import java.util.UUID;
 public class Client {
 
     @Id
+    @GeneratedValue
     @Getter @Setter
     @Column(name = "id")
     UUID id;

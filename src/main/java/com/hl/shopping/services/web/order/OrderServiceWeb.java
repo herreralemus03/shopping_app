@@ -21,4 +21,5 @@ public interface OrderServiceWeb {
 
     public OrderDto deleteOrder(OrderDto order);
 
+    public OrderDto createOrder(OrderDto orderDto);
 }

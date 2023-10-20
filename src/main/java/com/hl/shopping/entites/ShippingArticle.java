@@ -17,14 +17,6 @@ public class ShippingArticle {
     private UUID id;
 
     @Getter @Setter
-    @Column(name = "weight")
-    private Float weight;
-
-    @Getter @Setter
-    @Column(name = "weight_unit")
-    private String weightUnit;
-
-    @Getter @Setter
     @Column(name = "article_notes")
     private String articleNotes;
 
@@ -32,4 +24,13 @@ public class ShippingArticle {
     @Column(name = "amount")
     private Long amount;
 
+    @ManyToOne
+    @Getter @Setter
+    @JoinColumn(name = "id_shipping", referencedColumnName = "id")
+    private OrderShipping shipping;
+
+    @ManyToOne
+    @Getter @Setter
+    @JoinColumn(name = "id_product", referencedColumnName = "id")
+    private Product product;
 }

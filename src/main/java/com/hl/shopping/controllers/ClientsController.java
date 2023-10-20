@@ -1,7 +1,6 @@
 package com.hl.shopping.controllers;
 
 import com.hl.shopping.dto.ClientDto;
-import com.hl.shopping.dto.ProductDto;
 import com.hl.shopping.services.web.client.ClientServiceWeb;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +22,8 @@ public class ClientsController {
 
     @GetMapping("/get/paged")
     public ResponseEntity<?> getClientsPaged(
-            @RequestParam("page") final Integer page,
-            @RequestParam("size") final Integer size
+            @RequestParam(name = "page", required = false, defaultValue = "0") final Integer page,
+            @RequestParam(name = "size", required = false, defaultValue = "25") final Integer size
     ){
         try {
             return ResponseEntity.ok(new HashMap<String, Object>(){{
@@ -76,6 +75,7 @@ public class ClientsController {
                 put("body", clientServiceWeb.addClient(clientDto));
             }});
         } catch (Exception e){
+            e.printStackTrace();
             return ResponseEntity.status(500).body(e);
         }
     }
