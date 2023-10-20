@@ -2,7 +2,6 @@ server:
   port: 8080
   servlet:
     context-path: /shopping/api/v1
-
 management:
   endpoint:
     shutdown:
@@ -30,6 +29,8 @@ spring:
     hibernate:
       ddl-auto: none
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+  profiles:
+    active: test
 
 
 jwt:

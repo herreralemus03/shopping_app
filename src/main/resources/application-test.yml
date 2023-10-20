@@ -1,2 +1,37 @@
 server:
   port: 8080
+  servlet:
+    context-path: /shopping/api/v1
+
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      cors:
+        allowed-origins: '*'
+        allowed-methods: '*'
+        max-age: 36000
+        allowed-headers: '*'
+        exposed-headers: "X-Get-Header"
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: uoudcgbm
+    password: wekuXMr9p081vk55Ty0aZtfbm5QFIacg
+    url: jdbc:postgresql://bubble.db.elephantsql.com/uoudcgbm
+    hikari:
+      maximum-pool-size: 2
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: shopping
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+jwt:
+  secret: hl
