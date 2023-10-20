@@ -1,17 +1,18 @@
 <nav *ngIf="isAuthenticated()" class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/login">Shopping App</a>
+  <a class="navbar-brand" routerLink="/login">Shopping App</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-            <a class="nav-link" routerLink="/products">Products<span class="sr-only">(current)</span></a>
+            <a class="nav-link" routerLink="/products">Products</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" routerLink="/orders">Orders<span class="sr-only">(current)</span></a>
+            <a class="nav-link" routerLink="/orders">Orders</a>
         </li>
     </ul>
+    <button class="btn" (click)="logout()">Cerrar sesion</button>
   </div>
 </nav>
 

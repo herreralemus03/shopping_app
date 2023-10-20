@@ -17,4 +17,9 @@ export class AuthService {
   public isAuthenticated() : boolean {
     return sessionStorage.getItem('token') != null;
   }
+
+  public logout(){
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('products');
+  }
 }
