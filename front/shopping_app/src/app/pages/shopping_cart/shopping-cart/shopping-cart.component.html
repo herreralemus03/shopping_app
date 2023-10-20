@@ -1,0 +1,38 @@
+
+<div class="container" style="margin-top: 40px; margin-bottom: 40px; padding-left: 80px; padding-right: 80px;">
+    <form [formGroup]="orderForm">
+        <mat-label>Pais</mat-label>
+        <mat-select formControlName="countryId">
+            <mat-option *ngFor="let country of countries" [value]="country.id">{{ country.countryName }}</mat-option>
+        </mat-select>
+        <br>
+        <br>
+        <mat-label>Cliente</mat-label>
+        <mat-select formControlName="clientId">
+            <mat-option *ngFor="let client of clients" [value]="client.id">{{ client.clientName }} {{ client.clientLastName }}</mat-option>
+        </mat-select>
+        <br>
+        <br>
+        <mat-label>Tienda</mat-label>
+        <mat-select formControlName="storeId">
+            <mat-option *ngFor="let store of stores" [value]="store.id">{{ store.storeName }}</mat-option>
+        </mat-select>
+        <br>
+        <br>
+        <mat-label>Productos</mat-label>
+        <ul>
+            <li *ngFor="let product of currentProducts">
+                {{product.productName}}
+            </li>
+        </ul>
+        <br>
+        <mat-form-field style="width: 100%;">
+            <mat-label>Instrucciones de entrega</mat-label>
+            <textarea matInput style="width: 100%;" formControlName="notes"></textarea>
+        </mat-form-field>
+    </form>
+    <div>
+        <button type="button" class="btn btn-primary btn-block" (click)="buyItems()" [disabled]="orderForm.invalid">Comprar</button>
+        <button type="button" class="btn btn-secondary btn-block" (click)="closeDialog()">Cancelar</button>
+    </div>
+</div>

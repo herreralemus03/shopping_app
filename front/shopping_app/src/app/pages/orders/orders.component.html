@@ -1,0 +1,34 @@
+<div class="container">
+    <mat-paginator #paginator
+        class="demo-paginator"
+        (page)="handlePageEvent($event)"
+        [length]="length"
+        [pageSize]="pageSize"
+        [disabled]="disabled"
+        [showFirstLastButtons]="showFirstLastButtons"
+        [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+        [hidePageSize]="hidePageSize"
+        [pageIndex]="pageIndex"
+        aria-label="Select page">
+    </mat-paginator>
+    <table mat-table [dataSource]="orders" class="mat-elevation-z8">
+        <ng-container matColumnDef="Pais">
+          <th mat-header-cell *matHeaderCellDef> Pais </th>
+          <td mat-cell *matCellDef="let order"> {{order.country.countryName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Tienda">
+          <th mat-header-cell *matHeaderCellDef> Tienda </th>
+          <td mat-cell *matCellDef="let order"> {{order.store.storeName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Cliente">
+          <th mat-header-cell *matHeaderCellDef> Cliente </th>
+          <td mat-cell *matCellDef="let order"> {{order.shipping.at(0).client.clientName}} {{order.shipping.at(0).client.clientLastName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Direccion">
+          <th mat-header-cell *matHeaderCellDef> Direccion </th>
+          <td mat-cell *matCellDef="let order"> {{order.shipping.at(0).client.clientAddress}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+</div>

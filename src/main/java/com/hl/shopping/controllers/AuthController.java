@@ -15,7 +15,7 @@ import com.hl.shopping.models.JwtRequest;
 import com.hl.shopping.models.JwtResponse;
 
 @RestController
-@RequestMapping("/security")
+@RequestMapping("/api/v1/security")
 public class AuthController {
 
     final AuthenticationManager authenticationManager;

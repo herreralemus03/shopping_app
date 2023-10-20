@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(path = "/clients")
+@RequestMapping(path = "/api/v1/clients")
 public class ClientsController {
 
     final ClientServiceWeb clientServiceWeb;

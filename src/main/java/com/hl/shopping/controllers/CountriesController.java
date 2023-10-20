@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping(path = "/countries")
+@RequestMapping(path = "/api/v1/countries")
 public class CountriesController {
 
     final CountriesServiceWeb countriesServiceWeb;

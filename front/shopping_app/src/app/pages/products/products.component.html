@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-7">
+            <mat-paginator #paginator
+                class="demo-paginator"
+                (page)="handlePageEvent($event)"
+                [length]="length"
+                [pageSize]="pageSize"
+                [disabled]="disabled"
+                [showFirstLastButtons]="showFirstLastButtons"
+                [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+                [hidePageSize]="hidePageSize"
+                [pageIndex]="pageIndex"
+                aria-label="Select page">
+            </mat-paginator>
+            <mat-grid-list cols="3" rowHeight="200px">
+                <mat-grid-tile *ngFor="let product of currentProducts; index as i">
+                    <mat-card style="height: 160px; width: 270px;">
+                        <mat-card-header>
+                          <mat-card-title style="font-weight: bold; font-size: small;">
+                            {{product.productName}}
+                          </mat-card-title>
+                        </mat-card-header>
+                        <!--img mat-card-image src="https://static.thenounproject.com/png/583402-200.png" width="10%" class="center" style="object-fit: contain;"-->
+                        <mat-card-content>
+                            <p style="text-align: center; font-size: small;">{{product.productDescription}}</p>
+                        </mat-card-content>
+                        <mat-card-actions>
+                          <h6>${{product.price}}</h6>
+                          <button (click)="addProduct(product)" mat-button style="font-weight: bold; color: rgb(23, 95, 204);">Agregar</button>
+                        </mat-card-actions>
+                      </mat-card>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+        <div class="col-lg-5">
+            <div class="col-md-12 text-center" style="margin-top: 25px; margin-bottom: 25px; margin-left: 50px; margin-right: 50px;">
+                <button class="btn btn-success btn-block" [disabled]="this.cartProducts.length < 1" (click)="openDialog()">Comprar</button>
+            </div>
+            <div>
+                <ul class="margin-top: 10px">
+                    <li *ngFor="let product of cartProducts" style="margin-bottom: 10px;">
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-danger" (click)="removeProduct(product)">-</button>
+                            <div class="center" style="width: 25px; border: 1px solid gray; text-align: center;">{{product.amount}}</div>
+                            <button type="button" class="btn btn-info" (click)="addProduct(product)">+</button>
+                        </div>
+                        {{product.productName}}
+                    </li>
+                </ul>
+            </div>
+            <div *ngIf="cartProducts.length < 1" class="col-md-12 text-center">
+                Los productos agregados se mostraran aca
+            </div>
+        </div>
+    </div>
+</div>

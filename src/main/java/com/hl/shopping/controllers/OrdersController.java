@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping(path = "/orders")
+@RequestMapping(path = "/api/v1/orders")
 public class OrdersController {
 
     final OrderServiceWeb orderServiceWeb;
